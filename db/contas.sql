@@ -1,0 +1,5 @@
+CREATE TABLE contas (
+    numero INTEGER PRIMARY KEY AUTOINCREMENT,
+    senhaCodificada TEXT NOT NULL,
+    saldo NUMERIC NOT NULL
+);
