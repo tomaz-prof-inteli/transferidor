@@ -1,0 +1,7 @@
+@startuml
+class Conta [[java:tms.transferidor.entidade.Conta]] {
+	-numero: int
+	-senhaCodificada: String
+	-saldo: BigDecimal
+}
+@enduml

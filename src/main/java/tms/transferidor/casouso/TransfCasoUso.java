@@ -7,6 +7,7 @@ import tms.transferidor.entidade.Conta;
 import tms.transferidor.servico.SaldoInsuficienteException;
 import tms.transferidor.servico.SenhaInvalidaException;
 import tms.transferidor.servico.TransfServico;
+import tms.transferidor.servico.ValorAcimaLimiteException;
 import tms.transferidor.ui.TransfUI;
 
 public class TransfCasoUso {
@@ -34,6 +35,8 @@ public class TransfCasoUso {
 			ui.avisarSenhaInvalida();
 		} catch(SaldoInsuficienteException e) {
 			ui.avisarSaldoInsuficiente();
+		} catch (ValorAcimaLimiteException e) {
+			ui.avisarValorAcimaLimite();
 		}
 	}
 }

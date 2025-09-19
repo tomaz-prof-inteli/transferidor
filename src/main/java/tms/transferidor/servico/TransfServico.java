@@ -9,6 +9,7 @@ import tms.transferidor.util.SenhaUtil;
 
 public class TransfServico {
 	private ContaDao contaDao;
+	private static final BigDecimal MAX_VALOR = new BigDecimal(10000.00);
 
 	public TransfServico(ContaDao contaDao) {
 		super();
@@ -25,7 +26,10 @@ public class TransfServico {
 		}
 	}
 
-	public void transferir(Conta contaOrigem, Conta contaDestino, BigDecimal valor) throws SaldoInsuficienteException, SQLException {
+	public void transferir(Conta contaOrigem, Conta contaDestino, BigDecimal valor) throws SaldoInsuficienteException, SQLException, ValorAcimaLimiteException {
+		if (valor.compareTo(MAX_VALOR) > 0 ) {
+			throw new ValorAcimaLimiteException();
+		}
 		if (contaOrigem.getSaldo().compareTo(valor) < 0) {
 			throw new SaldoInsuficienteException();
 		}

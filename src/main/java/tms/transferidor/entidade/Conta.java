@@ -26,6 +26,9 @@ public class Conta implements Cloneable {
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
+	public void setSenhaCodificada(String senhaCodificada) {
+		this.senhaCodificada = senhaCodificada;
+	}
 	public String getSenhaCodificada() {
 		return senhaCodificada;
 	}

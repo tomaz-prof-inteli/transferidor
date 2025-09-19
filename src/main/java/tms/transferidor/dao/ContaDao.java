@@ -19,6 +19,13 @@ public class ContaDao {
 	private PreparedStatement pstmAtualizarSaldo;
 	public ContaDao(String url) throws SQLException {
 		conexao = DriverManager.getConnection(url);
+		prepareStatements();
+	}
+	public ContaDao(Connection c) throws SQLException {
+		conexao = c;
+		prepareStatements();
+	}	
+	public void prepareStatements() throws SQLException {
 		pstmListar = conexao.prepareStatement("SELECT * FROM contas");
 		pstmCriar = conexao.prepareStatement("INSERT INTO contas (senhaCodificada, saldo) VALUES (?, ?)");
 		pstmLer = conexao.prepareStatement("SELECT * FROM contas WHERE numero=?");

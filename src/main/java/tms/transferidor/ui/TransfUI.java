@@ -38,4 +38,8 @@ public class TransfUI {
 		print("SALDO INSUFICIENTE!");	
 	}
 
+	public void avisarValorAcimaLimite() {
+		print("VALOR EXCEDE LIMITE MÁXIMO!");
+	}
+
 }

@@ -1,0 +1,34 @@
+@startuml
+class TransfServico [[java:tms.transferidor.servico.TransfServico]] {
+	-{static} MAX_VALOR: BigDecimal
+	+TransfServico(contaDao: ContaDao)
+	+lerConta(numeroContaOrigem: int): Conta
+	+autenticar(senha: String, contaOrigem: Conta): void
+	+transferir(contaOrigem: Conta, contaDestino: Conta, valor: BigDecimal): void
+}
+class ContaDao {
+}
+TransfServico --> "1" ContaDao : contaDao
+class SenhaUtil [[java:tms.transferidor.util.SenhaUtil]] {
+	+{static} hash(senha: String): String
+	+{static} validar(senha: String, hashComSalt: String): boolean
+}
+class ContaDao [[java:tms.transferidor.dao.ContaDao]] {
+	-conexao: Connection
+	-pstmListar: PreparedStatement
+	-pstmCriar: PreparedStatement
+	-pstmLer: PreparedStatement
+	-pstmAtualizarSaldo: PreparedStatement
+	+ContaDao(url: String)
+	+listar(): List<Conta>
+	+criar(c: Conta): Conta
+	+ler(numero: int): Conta
+	+atualizarSaldo(c: Conta): void
+	+close(): void
+	+iniciarTransacao(): void
+	+commitTransacao(): void
+	+rollbackTransacao(): void
+}
+
+TransfServico .-> SenhaUtil: uses
+@enduml
